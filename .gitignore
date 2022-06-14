@@ -6,3 +6,4 @@
 /coveralls-upload.json
 /test/stubs/tmp
 /vendor
+.idea
