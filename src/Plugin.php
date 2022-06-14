@@ -266,6 +266,9 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     {
         $placeholders = $this->identifyPlaceholders($url);
 
+        var_dump($this->getConfig());
+        var_dump($url);
+
         // Replace each placeholder with env var
         foreach ($placeholders as $placeholder) {
             $value = $this->getEnvironmentRepository()->get($placeholder);
