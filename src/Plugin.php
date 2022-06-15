@@ -272,6 +272,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
             var_dump($value);
             if($value === false)
                 $value = $this->getEnvironmentRepository()->get($placeholder);
+            var_dump($value);
             $url   = str_replace('{%' . $placeholder . '}', $value, $url);
         }
 
