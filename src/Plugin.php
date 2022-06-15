@@ -272,10 +272,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         // Replace each placeholder with env var
         foreach ($placeholders as $placeholder) {
             $value = getenv($placeholder);
-            var_dump($value);
+//            var_dump($value);
             if($value === false)
                 $value = $this->getEnvironmentRepository()->get($placeholder);
-            var_dump($value);
+//            var_dump($value);
             $url   = str_replace('{%' . $placeholder . '}', $value, $url);
         }
 
