@@ -207,8 +207,8 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         var_dump($event->getType());
         var_dump($event->getProcessedUrl());
 //        var_dump($event->getContext());
-        if($event->getType() !== 'package')
-            return;
+//        if($event->getType() !== 'package')
+//            return;
 
         $filteredProcessedUrl = $filteredCacheKey = $processedUrl =
             $event->getProcessedUrl();
