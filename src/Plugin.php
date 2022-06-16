@@ -190,6 +190,9 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      */
     public function handlePreDownloadEvent(PreFileDownloadEvent $event): void
     {
+        var_dump($event);
+        var_dump($event->getType());
+        var_dump($event->getContext());
         if($event->getType() !== 'package')
             return;
 
