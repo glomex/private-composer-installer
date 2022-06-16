@@ -192,7 +192,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     {
         var_dump($event);
         var_dump($event->getType());
-        var_dump($event->getContext());
+//        var_dump($event->getContext());
         if($event->getType() !== 'package')
             return;
 
