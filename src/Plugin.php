@@ -127,13 +127,26 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return self::isComposer1() ? [
-            PackageEvents::PRE_PACKAGE_INSTALL => 'handlePreInstallUpdateEvent',
-            PackageEvents::PRE_PACKAGE_UPDATE  => 'handlePreInstallUpdateEvent',
-            PluginEvents::PRE_FILE_DOWNLOAD    => ['handlePreDownloadEvent', -1],
-        ] : [
-            PluginEvents::PRE_FILE_DOWNLOAD => ['handlePreDownloadEvent', -1],
-        ];
+//        var_dump($this->getConfig());
+//        die();
+
+        $events = [];
+
+        if(self::isComposer1())
+            $events = [
+                PackageEvents::PRE_PACKAGE_INSTALL => 'handlePreInstallUpdateEvent',
+                PackageEvents::PRE_PACKAGE_UPDATE  => 'handlePreInstallUpdateEvent',
+            ];
+
+        $events[PluginEvents::PRE_FILE_DOWNLOAD] = ['handlePreDownloadEvent', -1];
+        return $events;
+        //        return self::isComposer1() ? [
+//            PackageEvents::PRE_PACKAGE_INSTALL => 'handlePreInstallUpdateEvent',
+//            PackageEvents::PRE_PACKAGE_UPDATE  => 'handlePreInstallUpdateEvent',
+//            PluginEvents::PRE_FILE_DOWNLOAD    => ['handlePreDownloadEvent', -1],
+//        ] : [
+//            PluginEvents::PRE_FILE_DOWNLOAD => ['handlePreDownloadEvent', -1],
+//        ];
     }
 
     /**
@@ -192,6 +205,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     {
 //        var_dump($event);
         var_dump($event->getType());
+        var_dump($event->getProcessedUrl());
 //        var_dump($event->getContext());
         if($event->getType() !== 'package')
             return;
